@@ -1,9 +1,9 @@
 ﻿
 
 
-namespace Unity.Scope
+namespace Unity.Container
 {
-    public partial class ContainerScopeAsync : UnityContainer.ContainerScope
+    public partial class ContainerScopeAsync : ContainerScope
     {
         /// <summary>
         /// Scope constructor
@@ -19,13 +19,13 @@ namespace Unity.Scope
         /// </summary>
         /// <param name="scope"><see cref="UnityContainer.ContainerScope"/> being replaced by 
         /// this instance</param>
-        internal ContainerScopeAsync(UnityContainer.ContainerScope scope)
+        internal ContainerScopeAsync(ContainerScope scope)
             : base(scope)
         {
         }
 
         ///<inheritdoc/>
-        public override UnityContainer.ContainerScope CreateChildScope(UnityContainer container)
+        public override ContainerScope CreateChildScope(UnityContainer container)
             => new ContainerScopeAsync(container);
     }
 }

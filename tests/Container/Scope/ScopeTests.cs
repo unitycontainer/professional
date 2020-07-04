@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Unity.Scope;
+using Unity.Container;
 
 namespace Container.Scope
 {
