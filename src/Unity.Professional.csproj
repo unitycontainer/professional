@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>Unity.Container</PackageId>
-    <Description>Unity Container Engine</Description>
+    <PackageId>Unity.Professional</PackageId>
+    <Description>Unity Container advanced features</Description>
     <Copyright>Copyright © .NET Foundation and Contributors. All Rights Reserved</Copyright>
-    <PackageProjectUrl>https://github.com/unitycontainer/container</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/unitycontainer/container</RepositoryUrl>
-    <License>https://github.com/unitycontainer/container/blob/master/LICENSE</License>
+    <PackageProjectUrl>https://github.com/unitycontainer/professional</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/unitycontainer/professional</RepositoryUrl>
+    <License>https://github.com/unitycontainer/professional/blob/master/LICENSE</License>
     <IconUrl>https://avatars1.githubusercontent.com/u/12849707</IconUrl>
-    <PackageTags>Unity Container unitycontainer Microsoft.Practices.Unity IoC</PackageTags>
+    <PackageTags>Unity Container unitycontainer IoC async professional</PackageTags>
     <RepositoryType>git</RepositoryType>
     <Authors>Unity Open Source Project</Authors>
     <Company>Unity Open Source Project</Company>
@@ -25,36 +25,14 @@
   <!-- References -->
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Abstractions\src\Unity.Abstractions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.1" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard1.6'" Include="System.ComponentModel" Version="4.3.0" />
+    <ProjectReference Include="..\..\Container\src\Unity.Container.csproj" />
   </ItemGroup>
 
   <!-- Framework Compatibility -->
 
-  <ItemGroup>
-    <Compile Condition="$(TargetFramework.StartsWith('netcoreapp'))" Remove="Exceptions\IllegalInjectionMethodException.Desktop.cs" />
-    <Compile Condition="$(TargetFramework.StartsWith('netstandard'))" Remove="Exceptions\IllegalInjectionMethodException.Desktop.cs" />
-    <Compile Condition="$(TargetFramework.StartsWith('netcoreapp'))  == 'False'" Remove="Extensions\Reflection\Compatibility.NetCoreApp.cs" />
-    <Compile Condition="$(TargetFramework.StartsWith('netstandard')) == 'False'" Remove="Extensions\Reflection\Compatibility.NetStandard.cs" />
-  </ItemGroup>
-
-
+  
   <!-- C# 8.0 Compatibility -->
 
-  <ItemGroup>
-    <Compile Condition="'$(TargetFramework)' == 'net46'" Remove="Container\Interface\IUnityContainerAsync.CS8.0.cs" />
-    <Compile Condition="'$(TargetFramework)' == 'net45'" Remove="Container\Interface\IUnityContainerAsync.CS8.0.cs" />
-    <Compile Condition="'$(TargetFramework)' == 'netstandard1.6'" Remove="Container\Interface\IUnityContainerAsync.CS8.0.cs" />
-    <Compile Condition="'$(TargetFramework)' == 'netcoreapp1.0'" Remove="Container\Interface\IUnityContainerAsync.CS8.0.cs" />
-    <Compile Condition="'$(TargetFramework)' == 'net46'" Remove="Container\Scope\Scope.CS8.0.cs" />
-    <Compile Condition="'$(TargetFramework)' == 'net45'" Remove="Container\Scope\Scope.CS8.0.cs" />
-    <Compile Condition="'$(TargetFramework)' == 'netstandard1.6'" Remove="Container\Scope\Scope.CS8.0.cs" />
-    <Compile Condition="'$(TargetFramework)' == 'netcoreapp1.0'" Remove="Container\Scope\Scope.CS8.0.cs" />
-  </ItemGroup>
 
   <!-- Configuration Settings -->
 
