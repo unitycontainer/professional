@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Unity;
 using Unity.Container;
 
 namespace Container.Scope
@@ -6,7 +7,6 @@ namespace Container.Scope
     [TestClass]
     public class ScopeAsyncTests : ScopeTests
     {
-        [TestInitialize]
-        public override void InitializeTest() => Scope = new ContainerScopeAsync(Container);
+        protected override UnityContainer GetContainer() => new UnityContainer { new Professional() };
     }
 }

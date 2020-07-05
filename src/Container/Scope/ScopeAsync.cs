@@ -9,7 +9,7 @@ namespace Unity.Container
         /// Scope constructor
         /// </summary>
         /// <param name="container"><see cref="UnityContainer"/> that owns the scope</param>
-        internal ContainerScopeAsync(UnityContainer container) 
+        protected internal ContainerScopeAsync(UnityContainer container) 
             : base(container)
         {
         }
