@@ -1,6 +1,4 @@
 ﻿
-
-
 namespace Unity.Container
 {
     public partial class ContainerScopeAsync : ContainerScope
