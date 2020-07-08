@@ -1,28 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading;
 
 namespace Unity.Container
 {
     public partial class ContainerScopeAsync : ContainerScope
     {
-        public override Task RegisterAsync(Type type, RegistrationManager manager)
+        public override void RegisterAnonymous(ref RegistrationData data, CancellationToken token)
         {
-            throw new NotImplementedException();
+            base.RegisterAnonymous(ref data, token);
         }
 
-        public override Task RegisterAsync(Type[] types, RegistrationManager manager)
+        public override void RegisterContracts(ref RegistrationData data, CancellationToken token)
         {
-            throw new NotImplementedException();
-        }
-
-        public override Task RegisterAsync(Type type, string name, RegistrationManager manager)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Task RegisterAsync(Type[] types, string name, RegistrationManager manager)
-        {
-            throw new NotImplementedException();
+            base.RegisterContracts(ref data, token);
         }
     }
 }
