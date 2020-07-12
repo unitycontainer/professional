@@ -11,7 +11,7 @@ namespace Unity
 
         public static void Setup(ExtensionContext context)
         {
-            context.Container._scope = new ContainerScopeAsync(context.Container._scope);
+            context.Container._scope = new ContainerScopeAsync((ContainerScope)context.Container._scope);
         }
     }
 }

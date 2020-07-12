@@ -23,7 +23,7 @@ namespace Unity.Container
         }
 
         ///<inheritdoc/>
-        public override ContainerScope CreateChildScope(UnityContainer container)
+        public override IContainerScope CreateChildScope(UnityContainer container)
             => new ContainerScopeAsync(container);
     }
 }
