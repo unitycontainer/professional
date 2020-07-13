@@ -1,4 +1,6 @@
 ﻿
+using Unity.BuiltIn;
+
 namespace Unity.Container
 {
     public partial class ContainerScopeAsync : ContainerScope
@@ -23,7 +25,7 @@ namespace Unity.Container
         }
 
         ///<inheritdoc/>
-        public override IContainerScope CreateChildScope(UnityContainer container)
+        public override Scope CreateChildScope(UnityContainer container)
             => new ContainerScopeAsync(container);
     }
 }
