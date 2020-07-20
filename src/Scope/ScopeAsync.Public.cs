@@ -26,5 +26,9 @@ namespace Unity.Container
             throw new NotImplementedException();
         }
 
+        public override void Register(in RegistrationData data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

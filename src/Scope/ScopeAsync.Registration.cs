@@ -7,11 +7,8 @@ namespace Unity.Container
     {
         #region Registration
 
-        protected override void RegisterAnonymous(in RegistrationData data)
+        protected virtual void RegisterAnonymous(in RegistrationData data)
         {
-            // Let it be known how much we need in advance
-            Reserve(data.RegisterAs.Length);
-
             // Iterate and register types
             foreach (var type in data.RegisterAs)
             {
@@ -80,7 +77,7 @@ namespace Unity.Container
             }
         }
 
-        protected override void RegisterContracts(in RegistrationData data)
+        protected virtual void RegisterContracts(in RegistrationData data)
         {
             //var nameHash = (uint)data.Name!.GetHashCode();
             //var nameIndex = IndexOf(nameHash, data.Name, data.RegisterAs.Length);
