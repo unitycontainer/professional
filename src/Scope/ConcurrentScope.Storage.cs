@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace Unity.Container
 {
-    public partial class ContainerScopeAsync
+    public partial class ConcurrentScope
     {
         [DebuggerDisplay("Buffer = { Buffer.Length }, Position = {Position}")]
         public struct RegistrySection

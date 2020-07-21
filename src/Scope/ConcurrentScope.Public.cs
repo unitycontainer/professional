@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Unity.Container
 {
-    public partial class ContainerScopeAsync : Scope
+    public partial class ConcurrentScope : Scope
     {
         ///<inheritdoc/>
         public override IEnumerable<ContainerRegistration> Registrations => Enumerable.Empty<ContainerRegistration>();
@@ -14,7 +14,7 @@ namespace Unity.Container
         public override int Names => 0;
 
         public override Scope CreateChildScope()
-            => new ContainerScopeAsync(this);
+            => new ConcurrentScope(this);
 
         public override bool IsRegistered(Type type)
         {

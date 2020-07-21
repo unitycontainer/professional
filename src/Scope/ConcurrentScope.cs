@@ -3,7 +3,7 @@ using Unity.Storage;
 
 namespace Unity.Container
 {
-    public partial class ContainerScopeAsync : Scope
+    public partial class ConcurrentScope : Scope
     {
         #region Constants
 
@@ -32,7 +32,7 @@ namespace Unity.Container
         /// <summary>
         /// Copy constructor
         /// </summary>
-        internal ContainerScopeAsync(Scope scope) 
+        internal ConcurrentScope(Scope scope) 
             : base(scope.Parent, scope.Disposables)
         {
             // Registrations
@@ -53,7 +53,7 @@ namespace Unity.Container
         /// </summary>
         /// <param name="scope"><see cref="UnityContainer.ContainerScope"/> being replaced by 
         /// this instance</param>
-        internal ContainerScopeAsync(ContainerScopeAsync scope)
+        internal ConcurrentScope(ConcurrentScope scope)
             : base(scope)
         {
             // Registrations

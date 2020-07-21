@@ -24,7 +24,7 @@ namespace Unity
             if (UnityContainer.BuiltInContracts < scope.Version) 
                 throw new InvalidOperationException(ERROR_REGISTRATIONS);
 
-            context.Container._scope = new ContainerScopeAsync(scope);
+            context.Container._scope = new ConcurrentScope(scope);
         }
     }
 }
