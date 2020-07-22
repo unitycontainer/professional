@@ -33,7 +33,7 @@ namespace Unity.Container
         /// Copy constructor
         /// </summary>
         internal ConcurrentScope(Scope scope) 
-            : base(scope.Parent, scope.Disposables)
+            : base(scope.Next, scope.Disposables)
         {
             // Registrations
             _tail = _head = new RegistrationSegment(37);

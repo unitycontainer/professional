@@ -4,6 +4,11 @@ namespace Unity.Container
 {
     public partial class ConcurrentScope
     {
+        protected override bool MoveNext(ref int index, ref Registration registration)
+        {
+            throw new NotImplementedException();
+        }
+
         #region Expanding
 
         private int ExpandRegistry(int buffer)

@@ -16,17 +16,17 @@ namespace Unity.Container
         public override Scope CreateChildScope()
             => new ConcurrentScope(this);
 
-        public override bool IsRegistered(Type type)
+        public override bool Contains(Type type)
         {
             throw new NotImplementedException();
         }
 
-        public override bool IsRegistered(Type type, string name)
+        public override bool Contains(Type type, string name)
         {
             throw new NotImplementedException();
         }
 
-        public override void Register(in RegistrationData data)
+        public override void Add(in RegistrationData data)
         {
             throw new NotImplementedException();
         }

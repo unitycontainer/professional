@@ -38,7 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Container\src\Unity.Container.csproj" />
-    <ProjectReference Include="..\..\Container\tests\Unit\Unity.Container.Tests.csproj" />
+    <ProjectReference Include="..\..\Container\tests\Unity.Container.Tests.csproj" />
     <ProjectReference Include="..\src\Unity.Professional.csproj" />
   </ItemGroup>
   
