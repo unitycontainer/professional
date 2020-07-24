@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Unity.BuiltIn;
 using Unity.Container;
 
 namespace Container.Scope
@@ -11,7 +12,7 @@ namespace Container.Scope
         {
             base.InitializeTest();
 
-            Scope = new ConcurrentScope(Scope);
+            Scope = new ProfessionalScope((ContainerScope)Scope);
         }
 
         [ClassInitialize]
