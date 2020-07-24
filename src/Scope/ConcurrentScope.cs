@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 using Unity.Storage;
 
 namespace Unity.Container
@@ -7,60 +7,72 @@ namespace Unity.Container
     {
         #region Constants
 
-        public const int DATA_BUFFER_SIZE = 37;
-        public const int META_BUFFER_SIZE = 89;
+        public const float LoadFactor   = 0.72f;
+        public const float ReLoadFactor = 1.55f;
+
+        protected const int START_DATA = 4;
+        protected const int START_INDEX = 1;
+        protected const int HASH_CODE_SEED = 52361;
+
+        protected const int PRIME_ROOT_INDEX = 3;
+        protected const int PRIME_CHILD_INDEX = 1;
 
         #endregion
 
 
         #region Fields
 
-        private RegistrationSegment _head;
-        private RegistrationSegment _tail;
+        // Registrations
+        protected int _registryCount;
+        protected int _registryPrime;
+        protected Metadata[] _registryMeta;
+        protected ContainerRegistration[] _registryData;
+        private ReaderWriterLockSlim _registryLock = new ReaderWriterLockSlim();
 
-        private int _currentBuffer;
-        private RegistrySection[] _registrySections;
-        private MetadataSection[] _directoryMeta;
-
-        protected object _registrySync = new object();
-        protected object _metadataSync = new object();
-        protected object _contractSync = new object();
-
+        // Names
+        protected int _namesPrime;
+        protected int _namesCount;
+        protected Metadata[] _namesMeta;
+        protected NameInfo[] _namesData;
+        private object _namesLock = new object();
 
         #endregion
 
-        /// <summary>
-        /// Copy constructor
-        /// </summary>
-        internal ConcurrentScope(Scope scope) 
-            : base(scope.Next, scope.Disposables)
-        {
-            // Registrations
-            _tail = _head = new RegistrationSegment(37);
 
-            _registrySections = new[] { new RegistrySection(DATA_BUFFER_SIZE) };
-            _directoryMeta = new[] { new MetadataSection(META_BUFFER_SIZE) };
+        #region Constructors
 
-            // Copy data
-            GC.SuppressFinalize(scope);
-            foreach (var registration in scope.Registrations)
-            { 
-            }
-        }
-
-        /// <summary>
-        /// Child scope constructor
-        /// </summary>
-        /// <param name="scope"><see cref="UnityContainer.ContainerScope"/> being replaced by 
-        /// this instance</param>
-        internal ConcurrentScope(ConcurrentScope scope)
+        internal ConcurrentScope(Scope scope)
             : base(scope)
         {
-            // Registrations
-            _tail = _head = new RegistrationSegment(37);
+            // Names
+            _namesPrime = PRIME_ROOT_INDEX;
+            _namesMeta = new Metadata[Prime.Numbers[_namesPrime]];
+            _namesMeta.Setup(LoadFactor);
+            _namesData = new NameInfo[_namesMeta.GetCapacity()];
 
-            _registrySections = new[] { new RegistrySection(DATA_BUFFER_SIZE) };
-            _directoryMeta = new[] { new MetadataSection(META_BUFFER_SIZE) };
+            // Registrations
+            _registryMeta = new Metadata[Prime.Numbers[PRIME_ROOT_INDEX]];
+            _registryMeta.Setup(LoadFactor);
+            _registryData = new ContainerRegistration[_registryMeta.GetCapacity()];
         }
+
+        // Copy constructor
+        protected ConcurrentScope(ConcurrentScope scope)
+            : base(scope)
+        {
+            // Names
+            _namesMeta = new Metadata[Prime.Numbers[_namesPrime]];
+            _namesMeta.Setup(LoadFactor);
+            _namesData = new NameInfo[_namesMeta.GetCapacity()];
+
+            // Registrations
+            _registryMeta = new Metadata[Prime.Numbers[PRIME_CHILD_INDEX]];
+            _registryMeta.Setup(LoadFactor);
+            _registryData = new ContainerRegistration[_registryMeta.GetCapacity()];
+        }
+
+        ~ConcurrentScope() => Dispose(false);
+
+        #endregion
     }
 }

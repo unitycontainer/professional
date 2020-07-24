@@ -1,35 +1,71 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Unity.Container
 {
     public partial class ConcurrentScope
     {
-        protected override bool MoveNext(ref int index, ref Registration registration)
+        protected override bool MoveNext(ref int index, ref ContainerRegistration registration)
         {
-            throw new NotImplementedException();
+            index = index + 1;
+
+            if (_registryCount < index) return false;
+
+            //registration = _registryData[index];
+
+            return true;
         }
 
-        #region Expanding
 
-        private int ExpandRegistry(int buffer)
+        #region Hierarchy
+
+        /// <summary>
+        /// Method that creates <see cref="IUnityContainer.Registrations"/> enumerator
+        /// </summary>
+        public HierarchyEnumerable Hierarchy() => new HierarchyEnumerable(this);
+
+        public struct HierarchyEnumerable : IEnumerable<ConcurrentScope>
         {
-            lock (_registrySync)
+            private ConcurrentScope _containerScope;
+
+            public HierarchyEnumerable(ConcurrentScope containerScope) => _containerScope = containerScope;
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+            public IEnumerator<ConcurrentScope> GetEnumerator() => new HierarchyEnumerator(_containerScope);
+
+            public struct HierarchyEnumerator : IEnumerator<ConcurrentScope>
             {
-                // TODO: better verification?
-                if (_currentBuffer != buffer) return _currentBuffer;
+                private ConcurrentScope  _current;
+                private ConcurrentScope? _next;
 
-                var currentBuffer = _currentBuffer + 1;
-                if (_registrySections.Length <= currentBuffer)
-                { 
-                    Array.Resize(ref _registrySections, currentBuffer + 1);
-                    _registrySections[currentBuffer].Buffer = new Registry[Primes[_registrySections.Length]];
+                public HierarchyEnumerator(ConcurrentScope containerScope)
+                {
+                    _current = containerScope;
+                    _next    = containerScope;
                 }
-                _currentBuffer = currentBuffer;
+
+                object IEnumerator.Current => Current;
+
+                public ConcurrentScope Current => _current!;
+
+                public bool MoveNext()
+                {
+                    if (null == _next) return false;
+                    
+                    _current = _next;
+                    _next = (ConcurrentScope?)_current._next;
+
+                    return true;
+                }
+                
+                public void Dispose() { }
+
+                public void Reset() => throw new NotSupportedException();
             }
-
-            return _currentBuffer;
         }
-
 
         #endregion
     }
