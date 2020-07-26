@@ -20,12 +20,7 @@ namespace Unity
 
         public static void Setup(ExtensionContext context)
         {
-            var scope = context.Container._scope;
-
-            if (UnityContainer.BuiltInContracts < scope.Version) 
-                throw new InvalidOperationException(ERROR_REGISTRATIONS);
-
-            context.Container._scope = new ProfessionalScope((ContainerScope)scope);
+            context.Container._scope = new ProfessionalScope((ContainerScope)context.Container._scope);
         }
     }
 }

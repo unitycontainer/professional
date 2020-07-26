@@ -38,15 +38,5 @@ namespace Container.Extending
 
             Assert.IsNotNull(container);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void ContainerWithRegistrationsTest()
-        {
-            var container = new UnityContainer()
-                .RegisterInstance(this);
-
-            container.AddExtension(new Professional());
-        }
     }
 }
