@@ -7,7 +7,7 @@ using Unity.Container;
 namespace Container.Scope
 {
     [TestClass]
-    public partial class ConcurrentScopeTests : ScopeTests
+    public partial class ProScopeTests : ScopeTests
     {
         [TestInitialize]
         public override void InitializeTest()
@@ -23,6 +23,7 @@ namespace Container.Scope
             InitializeClass(context);
         }
 
+        [Ignore]
         [TestMethod]
         public override void AddMemoryTest()
         {
@@ -30,7 +31,7 @@ namespace Container.Scope
             ReadOnlyMemory<RegistrationDescriptor> memory = Registrations;
 
             // Act
-            Scope.Add(memory);
+            Scope.AddAsync(memory);
 
             // Validate
             Assert.AreEqual(100, Scope.Names);

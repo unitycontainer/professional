@@ -6,7 +6,11 @@ namespace Unity.Container
     {
         #region Add
 
-        public override void Add(in ReadOnlyMemory<RegistrationDescriptor> memory) => Add(memory.Span);
+        public override void AddAsync(object? state)
+        {
+            if (null != state) Add(((ReadOnlyMemory<RegistrationDescriptor>)state).Span);
+        }
+
 
         #endregion
 
