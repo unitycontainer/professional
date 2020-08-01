@@ -18,7 +18,7 @@ namespace Unity.Container
         #region Child Scope
 
         /// <inheritdoc />
-        public override Scope CreateChildScope() => new ProfessionalScope((Scope)this);
+        public override Scope CreateChildScope(int capacity) => new ProfessionalScope(this, capacity);
 
         #endregion
     }

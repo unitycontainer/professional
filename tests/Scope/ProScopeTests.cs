@@ -23,9 +23,8 @@ namespace Container.Scope
             InitializeClass(context);
         }
 
-        [Ignore]
         [TestMethod]
-        public override void AddMemoryTest()
+        public void AddMemoryTest()
         {
             // Arrange
             ReadOnlyMemory<RegistrationDescriptor> memory = Registrations;

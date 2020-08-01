@@ -13,8 +13,8 @@ namespace Unity.Container
         }
 
         // child constructor
-        protected ProfessionalScope(Scope scope)
-            : base(scope)
+        protected ProfessionalScope(Scope scope, int capacity)
+            : base(scope, capacity)
         {
         }
 
