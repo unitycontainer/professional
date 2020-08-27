@@ -6,7 +6,7 @@ namespace Unity.Benchmarks.Pro
         public override void GlobalSetup()
         {
             base.GlobalSetup();
-            Container.AddExtension(Professional.Setup);
+            ((UnityContainer)Container).AddExtension(Professional.Setup);
         }
     }
 }
