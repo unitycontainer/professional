@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Unity;
 
-namespace Container.Interfaces
+namespace Public.API
 {
     [TestClass]
-    public partial class ProContainerAPI : UnityContainerAPI
+    public partial class ProContainerAPI : IUnityContainer_Extensions
     {
         [TestInitialize]
         public override void TestInitialize()
