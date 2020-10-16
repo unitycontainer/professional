@@ -34,8 +34,8 @@ namespace Container.Scope
 
             // Validate
             Assert.AreEqual(5995, Scope.Version);
-            Assert.AreEqual(5995, Scope.Count);
-            Assert.AreEqual(5995, Scope.ToArray().Length);
+            Assert.AreEqual(6348, Scope.Count);
+            Assert.AreEqual(6348, Scope.ToArray().Length);
         }
     }
 }
