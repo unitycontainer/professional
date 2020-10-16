@@ -33,9 +33,8 @@ namespace Container.Scope
             Scope.AddAsync(memory);
 
             // Validate
-            Assert.AreEqual(100, Scope.Names);
             Assert.AreEqual(5995, Scope.Version);
-            Assert.AreEqual(5995, Scope.Contracts);
+            Assert.AreEqual(5995, Scope.Count);
             Assert.AreEqual(5995, Scope.ToArray().Length);
         }
     }
