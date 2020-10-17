@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Unity;
 using Unity.BuiltIn;
 using Unity.Container;
 
@@ -21,21 +19,6 @@ namespace Container.Scope
         public static void InitializeAsyncClass(TestContext context)
         {
             InitializeClass(context);
-        }
-
-        [TestMethod]
-        public void AddMemoryTest()
-        {
-            // Arrange
-            ReadOnlyMemory<RegistrationDescriptor> memory = Registrations;
-
-            // Act
-            Scope.AddAsync(memory);
-
-            // Validate
-            Assert.AreEqual(5995, Scope.Version);
-            Assert.AreEqual(6348, Scope.Count);
-            Assert.AreEqual(6348, Scope.ToArray().Length);
         }
     }
 }
