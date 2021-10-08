@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\RegressionTests\Unity.Regression.Tests.csproj" />
     <ProjectReference Include="..\src\Unity.Professional.csproj" />
   </ItemGroup>
 

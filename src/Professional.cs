@@ -12,7 +12,7 @@ namespace Unity
 
         public static void Setup(ExtensionContext context)
         {
-            context.Container._scope = new ProfessionalScope((ContainerScope)context.Container._scope);
+            //context.Container._scope = new ProfessionalScope((ContainerScope)context.Container._scope);
         }
     }
 
