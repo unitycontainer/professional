@@ -8,4 +8,4 @@ on:
 
 jobs:
   build:
-    uses: unitycontainer/experimental/.github/workflows/dotnetcore.yml@main
+    uses: ./experimental/.github/workflows/dotnetcore.yml@main
