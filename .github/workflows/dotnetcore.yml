@@ -8,5 +8,5 @@ on:
 
 jobs:
   build:
-    uses: unitycontainer/experimental/.github/workflows/dotnetcore.yml@main
+    uses: unitycontainer/experimental/.github/workflows/dotnetcore.yml@dfed84a11203127d5c3fbd9656a9a1c9de790972
 
